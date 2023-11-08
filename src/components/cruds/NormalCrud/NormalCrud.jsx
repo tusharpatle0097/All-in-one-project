@@ -13,6 +13,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -38,27 +40,81 @@ const NormalCrud = () => {
         e.preventDefault()
 
         if (firstName === "" || firstName === null || firstName.length < 3) {
-            alert("Please fill First Name Poper")
+            toast.error('Please fill First Name Proper', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
 
         if (lastName === "" || lastName === null || lastName.length < 3) {
-            alert("Please fill Last Name Poper")
+            toast.error('Please fill Last Name Proper', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
 
-        if (Age === "" || Age === null || Age.length < 3) {
-            alert("Please fill Age")
+        if (Age === "" || Age === null) {
+            toast.error('Please fill Age', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
 
-        if (phone === "" || phone === null || phone.length < 3) {
-            alert("Please fill Phone")
+        if (phone === "" || phone === null) {
+            toast.error('Please fill Phone', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
 
-        if (email === "" || email === null || email.length < 3) {
-            alert("Please fill Email")
+        if (email === "" || email === null) {
+            toast.error('Please fill Email', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
 
-        if (userList === "" || userList === null || userList.length < 3) {
-            alert("Please fill UserName")
+        if (userList === "" || userList === null) {
+            toast.error('Please fill UserName', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
         }
 
         else {
@@ -75,6 +131,16 @@ const NormalCrud = () => {
                     setemail('');
                     setuserList('');
                     getApiData();
+                    toast.success('SucessFully Submitted!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
 
                 })
                 .catch((err) => {
@@ -123,9 +189,21 @@ const NormalCrud = () => {
 
     return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
             <Box sx={{ display: 'flex' }}>
                 <SideNav />
-                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                <Box component="main" sx={{ flexGrow: 1}}>
                     <DrawerHeader />
                     <h3 className='text-center mt-3 mb-3'>Normal Crud Operation</h3>
                     <div className="container">

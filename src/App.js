@@ -6,18 +6,21 @@ import CrudHomePage from './components/cruds/CrudHomePage/CrudHomePage';
 import NormalCrud from './components/cruds/NormalCrud/NormalCrud';
 import NormalCrudUpdate from './components/cruds/NormalCrud/NormalCrudUpdate';
 import NormalShowCrud from './components/cruds/NormalCrud/NormalShowCrud';
+import DarkModeStore from './components/context/DarkModeStore';
 const App = () => {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<WellCome />}></Route>
-          <Route path='/CrudHomePage' element={<CrudHomePage />}></Route>
-          <Route path='/NormalCrud' element={<NormalCrud/>}></Route>
-          <Route path='/Normal-Crud-Update/:id' element={< NormalCrudUpdate/>}></Route>
-          <Route path='/Normal-Crud-Show/:id' element={< NormalShowCrud/>}></Route>
-        </Routes>
-      </BrowserRouter>
+      <DarkModeStore>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<WellCome />}></Route>
+            <Route path='/CrudHomePage' element={<CrudHomePage />}></Route>
+            <Route path='/NormalCrud' element={<NormalCrud />}></Route>
+            <Route path='/Normal-Crud-Update/:id' element={< NormalCrudUpdate />}></Route>
+            <Route path='/Normal-Crud-Show/:id' element={< NormalShowCrud />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </DarkModeStore>
     </>
   )
 }

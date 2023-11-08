@@ -8,7 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const CrudHomePage = () => {
 
@@ -25,6 +25,18 @@ const CrudHomePage = () => {
             title: "Normal Crud Operation",
             details: "Create Using Moke api"
         },
+        {
+            title: "Normal Crud Operation",
+            details: "Create Using Moke api"
+        },
+        {
+            title: "Normal Crud Operation",
+            details: "Create Using Moke api"
+        },
+        {
+            title: "Normal Crud Operation",
+            details: "Create Using Moke api"
+        },
 
     ]
 
@@ -34,13 +46,13 @@ const CrudHomePage = () => {
 
             <Box sx={{ display: 'flex' }}>
                 <SideNav />
-                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                <Box component="main"  sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
                     <Grid container spacing={2}>
                         {
                             data.map((items) => {
                                 return (
-                                    <Grid item xs={12} lg={3}>
+                                    <Grid item xs={12} lg={3} md={4} sm={12}>
                                         <Card sx={{ minWidth: 275 }}>
                                             <CardContent>
                                                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>

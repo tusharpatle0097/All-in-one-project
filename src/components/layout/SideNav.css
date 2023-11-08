@@ -4,3 +4,32 @@
     color: #fff;
     font-size: 22px;
 }
+
+.darkButton {
+    background-color: black;
+    color: #fff;
+}
+
+.lightButton {
+    background-color: #fff;
+    color: black;
+}
+
+.darmodecustombutton {
+    border: none;
+    /* background: none; */
+    border: 2px solid gray;
+    padding: 0 10px 0 10px;
+    border-radius: 10px;
+}
+.NavbarDark{
+    background-color: rgb(29, 27, 28) !important;
+    color: #fff;
+}
+.NavbarLight{
+    background-color: #ff005c !important;
+    color: #fff;
+}
+.drawerSide{
+    background-color: red !important;
+}

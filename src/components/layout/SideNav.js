@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -18,7 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-
+import Button from '@mui/material/Button';
 import { alpha } from '@mui/material/styles';
 // import AppBar from '@mui/material/AppBar';
 import InputBase from '@mui/material/InputBase';
@@ -30,7 +30,9 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from "react-router-dom";
-import './SideNav.css'
+import './SideNav.css';
+import { DarkModeContext } from '../context/DarkModeStore';
+
 
 const drawerWidth = 240;
 
@@ -144,6 +146,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 export default function SideNav() {
+
+    const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
+
+    console.log(isDarkMode, "//??/")
+
+
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
@@ -259,7 +267,7 @@ export default function SideNav() {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" open={open} style={{background:"mediumvioletred"}}>
+            <AppBar position="fixed" open={open} className={`${isDarkMode ? "NavbarDark" : "NavbarLight"}`}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -279,10 +287,11 @@ export default function SideNav() {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                         className='projectButton'
-                        onClick={()=>Navigate('/')}
+                        onClick={() => Navigate('/')}
                     >
                         Projects
                     </button>
+
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
@@ -294,6 +303,8 @@ export default function SideNav() {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <button className={`darmodecustombutton ${isDarkMode ? "darkButton" : "lightButton"}`} onClick={toggleDarkMode}>{isDarkMode ? "Light Mode" : "Dark Mode"}</button>
+
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                             <Badge badgeContent={4} color="error">
                                 <MailIcon />
@@ -343,8 +354,8 @@ export default function SideNav() {
                     </IconButton>
                 </DrawerHeader>
                 <Divider />
-                <List>
-                    <ListItem disablePadding sx={{ display: 'block' }}>
+                <List >
+                    <ListItem disablePadding sx={{ display: 'block' }} >
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -367,9 +378,8 @@ export default function SideNav() {
                     </ListItem>
                 </List>
                 <Divider />
-
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Box component="main" >
                 <DrawerHeader />
                 <Typography paragraph>
 

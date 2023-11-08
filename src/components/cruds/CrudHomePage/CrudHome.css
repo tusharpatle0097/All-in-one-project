@@ -1,0 +1,17 @@
+.CardsDark{
+    background-color: green !important;
+    color: #fff !important;
+}
+.CardsLight{
+    background-color: #fff !important;
+    color: black !important;
+}
+.item{
+    width: 100%;
+    border: 2px solid red;
+}
+
+.cont{
+    border: 2px solid red;
+    width: 100%;
+}
