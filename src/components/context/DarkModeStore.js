@@ -1,31 +1,75 @@
-import React from 'react';
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from 'react';
 
 export const DarkModeContext = createContext(null);
 
 const DarkModeStore = (props) => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+  // Initialize the dark mode state using localStorage (if available)
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const storedValue = localStorage.getItem('darkMode');
+    return storedValue === 'true';
+  });
 
+  // Function to toggle dark mode
+  const toggleDarkMode = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    // Update localStorage to store the user's preference
+    localStorage.setItem('darkMode', newMode);
+  };
 
-    const toggleDarkMode = () => {
-        setIsDarkMode(!isDarkMode);
-        if (!isDarkMode) {
-            document.body.classList.add('dark');
-        } else {
-            document.body.classList.remove('dark');
-        }
-    };
-
-    const valueData = {
-        isDarkMode,
-        toggleDarkMode
+  // Listen for changes to the dark mode state and update the CSS class
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
     }
+  }, [isDarkMode]);
 
-    return (
-        <DarkModeContext.Provider value={valueData}>
-            {props.children}
-        </DarkModeContext.Provider>
-    )
-}
+  const valueData = {
+    isDarkMode,
+    toggleDarkMode,
+  };
 
-export default DarkModeStore
+  return (
+    <DarkModeContext.Provider value={valueData}>
+      {props.children}
+    </DarkModeContext.Provider>
+  );
+};
+
+export default DarkModeStore;
+
+
+
+// import React from 'react';
+// import { createContext, useEffect, useState } from "react";
+
+// export const DarkModeContext = createContext(null);
+
+// const DarkModeStore = (props) => {
+//     const [isDarkMode, setIsDarkMode] = useState(false);
+
+
+//     const toggleDarkMode = () => {
+//         setIsDarkMode(!isDarkMode);
+//         if (!isDarkMode) {
+//             document.body.classList.add('dark');
+//         } else {
+//             document.body.classList.remove('dark');
+//         }
+//     };
+
+//     const valueData = {
+//         isDarkMode,
+//         toggleDarkMode
+//     }
+
+//     return (
+//         <DarkModeContext.Provider value={valueData}>
+//             {props.children}
+//         </DarkModeContext.Provider>
+//     )
+// }
+
+// export default DarkModeStore

@@ -2,3 +2,22 @@
     position: relative;
     right: 10px;
   }
+
+  .tableDark{
+    background-color: gray !important;
+    color: white !important;
+  }
+
+  .tableLight{
+    background-color: #fff !important;
+    color: black !important;
+  }
+
+  .menuItemsDark{
+    background-color: black;
+    color: #fff;
+  }
+  .menuItemsLight{
+    background-color: white;
+    color: black;
+  }

@@ -14,14 +14,13 @@ const WellCome = () => {
         ...theme.mixins.toolbar,
     }));
 
-
     return (
         <>
             <Box sx={{ display: 'flex' }}>
                 <SideNav />
-                <Box component="main" >
+                <Box component="main" sx={{ flexGrow: 1, p: 3 }} >
                     <DrawerHeader />
-                    asas
+                    <h3 className='text-center'>Wellcome to my Wite </h3>
                 </Box>
             </Box>
         </>

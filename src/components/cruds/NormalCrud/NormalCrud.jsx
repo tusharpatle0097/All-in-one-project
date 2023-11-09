@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import SideNav from '../../layout/SideNav';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -15,6 +15,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { DarkModeContext } from '../../context/DarkModeStore';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -25,6 +26,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     ...theme.mixins.toolbar,
 }));
 const NormalCrud = () => {
+
+    const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
 
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('');
@@ -203,7 +206,7 @@ const NormalCrud = () => {
             />
             <Box sx={{ display: 'flex' }}>
                 <SideNav />
-                <Box component="main" sx={{ flexGrow: 1}}>
+                <Box component="main" sx={{ flexGrow: 1 }}>
                     <DrawerHeader />
                     <h3 className='text-center mt-3 mb-3'>Normal Crud Operation</h3>
                     <div className="container">
@@ -257,19 +260,18 @@ const NormalCrud = () => {
                             </Box>
                         </form>
 
-                        <TableContainer component={Paper} className='mt-3'>
+                        <TableContainer component={Paper} className={`mt-3 ${isDarkMode ? "tableDark" : "tableLight"}`} >
                             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                 <TableHead>
-                                    <TableRow>
-                                        <TableCell >No.</TableCell>
-                                        <TableCell >First Name</TableCell>
-                                        <TableCell>Last Name</TableCell>
-                                        <TableCell>Age</TableCell>
-                                        <TableCell>Phone</TableCell>
-                                        <TableCell>Email</TableCell>
-                                        <TableCell>Selected User</TableCell>
-                                        <TableCell>Action</TableCell>
-
+                                    <TableRow >
+                                        <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>No.</TableCell>
+                                        <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>First Name</TableCell>
+                                        <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>Last Name</TableCell>
+                                        <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>Age</TableCell>
+                                        <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>Phone</TableCell>
+                                        <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>Email</TableCell>
+                                        <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>Selected User</TableCell>
+                                        <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>Action</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -278,15 +280,15 @@ const NormalCrud = () => {
                                             key={index}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                            <TableCell component="th" scope="row">
+                                            <TableCell component="th" scope="row" className={`${isDarkMode ? "tableDark" : ""}`}>
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell >{row.firstName}</TableCell>
-                                            <TableCell >{row.lastName}</TableCell>
-                                            <TableCell >{row.Age}</TableCell>
-                                            <TableCell >{row.phone}</TableCell>
-                                            <TableCell >{row.email}</TableCell>
-                                            <TableCell >{row.userList}</TableCell>
+                                            <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>{row.firstName}</TableCell>
+                                            <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>{row.lastName}</TableCell>
+                                            <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>{row.Age}</TableCell>
+                                            <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>{row.phone}</TableCell>
+                                            <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>{row.email}</TableCell>
+                                            <TableCell className={`${isDarkMode ? "tableDark" : ""}`}>{row.userList}</TableCell>
                                             <TableCell className='gap-3 d-flex'>
                                                 <Link to={'/Normal-Crud-Show/' + row.id}> <Button variant="contained" color="success">Show</Button></Link>
                                                 <Button onClick={() => handleDelete(row.id)} variant="contained" color="error">Delete</Button>

@@ -34,6 +34,7 @@ import './SideNav.css';
 import { DarkModeContext } from '../context/DarkModeStore';
 
 
+  
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -264,6 +265,9 @@ export default function SideNav() {
         </Menu>
     );
 
+
+
+
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
@@ -347,15 +351,15 @@ export default function SideNav() {
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
-            <Drawer variant="permanent" open={open}>
+            <Drawer variant="permanent" open={open} className='drawerSide'>
                 <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton onClick={handleDrawerClose} className={`${isDarkMode?"dark":"light"}`}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </DrawerHeader>
                 <Divider />
                 <List >
-                    <ListItem disablePadding sx={{ display: 'block' }} >
+                    <ListItem disablePadding sx={{ display: 'block' }} className={`${isDarkMode?"menuItemsDark":"menuItemsLight"}`}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -371,7 +375,7 @@ export default function SideNav() {
                                     justifyContent: 'center',
                                 }}
                             >
-                                {<InboxIcon />}
+                                {<InboxIcon className={`${isDarkMode?"menuItemsDark":"menuItemsLight"}`}/>}
                             </ListItemIcon>
                             <ListItemText primary={'Crud Operations'} sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
@@ -379,6 +383,7 @@ export default function SideNav() {
                 </List>
                 <Divider />
             </Drawer>
+
             <Box component="main" >
                 <DrawerHeader />
                 <Typography paragraph>

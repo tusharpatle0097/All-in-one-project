@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import SideNav from '../../layout/SideNav';
@@ -9,8 +9,14 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
+import { DarkModeContext } from '../../context/DarkModeStore';
+import './CrudHome.css'
 
 const CrudHomePage = () => {
+
+    const { isDarkMode } = useContext(DarkModeContext);
+
+    console.log(isDarkMode, "lolo")
 
     const DrawerHeader = styled('div')(({ theme }) => ({
         display: 'flex',
@@ -24,20 +30,7 @@ const CrudHomePage = () => {
         {
             title: "Normal Crud Operation",
             details: "Create Using Moke api"
-        },
-        {
-            title: "Normal Crud Operation",
-            details: "Create Using Moke api"
-        },
-        {
-            title: "Normal Crud Operation",
-            details: "Create Using Moke api"
-        },
-        {
-            title: "Normal Crud Operation",
-            details: "Create Using Moke api"
-        },
-
+        }
     ]
 
     const Navigate = useNavigate()
@@ -46,16 +39,16 @@ const CrudHomePage = () => {
 
             <Box sx={{ display: 'flex' }}>
                 <SideNav />
-                <Box component="main"  sx={{ flexGrow: 1, p: 3 }}>
+                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
                     <Grid container spacing={2}>
                         {
                             data.map((items) => {
                                 return (
                                     <Grid item xs={12} lg={3} md={4} sm={12}>
-                                        <Card sx={{ minWidth: 275 }}>
+                                        <Card sx={{ minWidth: 275 }} className={`${isDarkMode ? "CardsDark" : "CardsLight"}`} >
                                             <CardContent>
-                                                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                                <Typography sx={{ fontSize: 14 }}  gutterBottom>
                                                     {items.details}
                                                 </Typography>
                                                 <Typography variant="h5" component="div">
