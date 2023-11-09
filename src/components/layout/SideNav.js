@@ -32,7 +32,8 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from "react-router-dom";
 import './SideNav.css';
 import { DarkModeContext } from '../context/DarkModeStore';
-
+import TocIcon from '@mui/icons-material/Toc';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
   
 const drawerWidth = 240;
@@ -375,11 +376,35 @@ export default function SideNav() {
                                     justifyContent: 'center',
                                 }}
                             >
-                                {<InboxIcon className={`${isDarkMode?"menuItemsDark":"menuItemsLight"}`}/>}
+                                {<TocIcon className={`${isDarkMode?"menuItemsDark":"menuItemsLight"}`}/>}
                             </ListItemIcon>
                             <ListItemText primary={'Crud Operations'} sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                     </ListItem>
+
+                    <ListItem disablePadding sx={{ display: 'block' }} className={`${isDarkMode?"menuItemsDark":"menuItemsLight"}`}>
+                        <ListItemButton
+                            sx={{
+                                minHeight: 48,
+                                justifyContent: open ? 'initial' : 'center',
+                                px: 2.5,
+                            }}
+                            onClick={() => Navigate('/NormalTransCompilerHome')}
+                        >
+                            <ListItemIcon
+                                sx={{
+                                    minWidth: 0,
+                                    mr: open ? 3 : 'auto',
+                                    justifyContent: 'center',
+                                }}
+                            >
+                                {<EditNoteIcon className={`${isDarkMode?"menuItemsDark":"menuItemsLight"}`}/>}
+                            </ListItemIcon>
+                            <ListItemText primary={'Trascompiler'} sx={{ opacity: open ? 1 : 0 }} />
+                        </ListItemButton>
+                    </ListItem>
+
+
                 </List>
                 <Divider />
             </Drawer>
